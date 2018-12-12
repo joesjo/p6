@@ -3,17 +3,15 @@ import exceptions.InvalidLengthException;
 import p4_arrays.*;
 
 public class Array7 {
-
-	IntegerArrays integerArrays = new IntegerArrays();
-	private final int array7Length = 7;
-	private int[] array7 = new int[7];
+	
+	private static final int array7Length = 7;
+	private int[] array7 = new int[array7Length];
 
 	public Array7() {
 		this(new int[] {0,0,0,0,0,0,0});
 	}
 	
-	public Array7( int[] array ){
-		
+	public Array7( int[] array ){	
 		if ( array.length == array7Length ) {
 			this.array7 = array;
 		}
@@ -23,9 +21,7 @@ public class Array7 {
 	}
 	
 	public Array7( Array7 array7 ) {
-		
-		this(array7.toIntArray());
-		
+		this(array7.toIntArray());	
 	}
 
 	public void setElement( int pos, int value ) {
@@ -56,12 +52,12 @@ public class Array7 {
 	}
 	
 	public Array7 getArray() {
-		Array7 array7toReturn = new Array7(integerArrays.copy(this.array7));
+		Array7 array7toReturn = new Array7(IntegerArrays.copy(this.array7));
 		return array7toReturn;
 	}
 	
 	public int[] toIntArray() {
-		int[] arrayToRetrun = integerArrays.copy(this.array7);
+		int[] arrayToRetrun = IntegerArrays.copy(this.array7);
 		return arrayToRetrun;
 	}
 }

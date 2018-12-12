@@ -3,33 +3,46 @@ import exceptions.InvalidLengthException;
 import p4_arrays.Integer2dArrays;
 public class Array7x7 {
 
-	private Integer2dArrays arr;
-	private int[][] array7x7 = new int[7][7];
-	private final int array7Length = 7;
-	private final int array7x7Length =  array7Length * array7Length;
-	private Array7 tempArray7;
+	/*
+	 * amount of ELEMENTS in an Array7 array.
+	 */
+	private static final int array7Length = 7;
+	
+	/*
+	 * amount of ELEMENTS in an Array7x7 array.
+	 */
+	private static final int array7x7Length =  array7Length * array7Length;
+	
+	private int[][] array7x7 = new int[array7Length][array7Length];
+	private Array7 array7;
 
 	public Array7x7() {
-		this(new int[][]{{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}});
+		this(new int[][]{
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0}});
 	}
 
-	public Array7x7(int[][] array) {
-	
-		if( arr.elements(array) == array7x7Length) {
+	public Array7x7( int[][] array ) {
+		if( Integer2dArrays.elements(array) == array7x7Length ) {
 			this.array7x7 = array;
 		}
 		else {
-			throw new InvalidLengthException("Array must contain exactly seven (7) arrays with exactly seven (7) integers each: ");
+			throw new InvalidLengthException( "Array must contain exactly seven (7) arrays with exactly seven (7) integers each: " );
 		}
 	}
 
-	public Array7x7(Array7x7 array) {
+	public Array7x7( Array7x7 array ) {
 	
-		if( arr.elements(array.toIntArray()) == array7x7Length) {
+		if( Integer2dArrays.elements(array.toIntArray()) == array7x7Length ) {
 			this.array7x7 = array.toIntArray();
 		}
 		else {
-			throw new InvalidLengthException("Array must contain exactly seven (7) arrays with exactly seven (7) integers each: ");
+			throw new InvalidLengthException( "Array must contain exactly seven (7) arrays with exactly seven (7) integers each: " );
 		}	
 	}
 
@@ -50,7 +63,7 @@ public class Array7x7 {
 	public Array7 getRow( int row ) {
 		Array7 arrayToReturn = new Array7();
 		for( int i = 0; i < array7Length; i++ ) {
-			arrayToReturn.setElement(i, array7x7[row][i]);
+			arrayToReturn.setElement( i, array7x7[row][i] );
 		}
 		return arrayToReturn;	
 	}
@@ -64,15 +77,15 @@ public class Array7x7 {
 	public Array7 getCol( int col ) {
 		Array7 arrayToReturn = new Array7();
 		for( int i = 0; i < array7Length; i++ ) {
-			arrayToReturn.setElement(i, array7x7[i][col]);
+			arrayToReturn.setElement( i, array7x7[i][col] );
 		}
 		return arrayToReturn;	
 	}
 
-	public void setArray(Array7x7 array7x7) {
+	public void setArray( Array7x7 array7x7 ) {
 		for( int i = 0; i < 7; i++ ) {
-			for( int j = 0; j < array7Length; j++) {
-				this.array7x7[i][j] = array7x7.getElement(i, j);
+			for( int j = 0; j < array7Length; j++ ) {
+				this.array7x7[i][j] = array7x7.getElement( i, j );
 			}
 		}
 	}
@@ -81,7 +94,6 @@ public class Array7x7 {
 
 		Array7x7 arrayToReturn = new Array7x7(this.array7x7);
 		return arrayToReturn;
-
 	}
 
 	public int[][] toIntArray() {
@@ -97,29 +109,31 @@ public class Array7x7 {
 	}
 
 	public void shiftLeft() {
-		shiftLeft(new Array7());
+		shiftLeft( new Array7() );
 	}
-	public void shiftLeft(Array7 array7) {
-		tempArray7 = new Array7(getCol(0));
+	
+	public void shiftLeft( Array7 array7 ) {
+		array7 = new Array7( getCol(0) );
 		
 		for( int i = 0; i < array7Length - 1; i++ ) {
 			setCol(i, getCol(i + 1));
 		}
-		setCol(array7Length - 1, array7);
+		setCol( array7Length - 1, array7 );
 		
 	}
 	
-	public void shiftRight(Array7 array7) {
-		tempArray7 = new Array7(getCol(array7Length-1));
+	public void shiftRight( Array7 array7 ) {
 		
-		for( int i = array7Length-1; i > 0; i -- ) {
-			setCol(i, getCol(i - 1 ));
+		array7 = new Array7( getCol(array7Length-1) );
+	
+		for( int i = array7Length-1; i > 0; i-- ) {
+			setCol( i, getCol( i - 1 ) );
 		}
 		setCol(0, array7);
 	}
 	
 	public Array7 getTempArray() {
-		return this.tempArray7;
+		return this.array7;
 	}
 }
 
