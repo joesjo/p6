@@ -1,12 +1,8 @@
 package resources;
 
-import javax.swing.JOptionPane;
-
-import p6_colors.Color;
-import p6_colors.ColorDisplay;
-
 public class Chars {
-
+	
+	// chars
 	private static int[][] charA = { 
 			{0,0,1,1,1,0,0},
 			{0,1,0,0,0,1,0},
@@ -240,8 +236,19 @@ public class Chars {
 			{0,0,1,0,0,0,0},
 			{0,1,0,0,0,0,0},
 			{0,1,1,1,1,1,0}};
-
-	private static int[][] SPACE = { 
+	
+	// figures
+	private static int[][] charNBR_ONE = { 
+			{0,0,0,1,0,0,0},
+			{0,0,1,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,1,1,1,0,0}};
+	
+	// symbols
+	private static int[][] charSPACE = { 
 			{0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0},
@@ -250,14 +257,41 @@ public class Chars {
 			{0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0}};
 	
-	private static int[][] UNKNOWN = { 
-			{1,1,1,1,1,1,1},
-			{1,1,1,1,1,1,1},	
-			{1,1,1,1,1,1,1},
-			{1,1,1,1,1,1,1},
-			{1,1,1,1,1,1,1},
-			{1,1,1,1,1,1,1},
-			{1,1,1,1,1,1,1}};
+	private static int[][] charPLUS = { 
+			{0,0,0,0,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,1,1,1,1,1,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,0,0,0,0}};
+	
+	private static int[][] charMINUS = { 
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,1,1,1,1,1,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0}};
+	
+	private static int[][] charEXCLAMATION_MARK = { 
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,1,0,0,0}};
+	
+	private static int[][] charUNKNOWN = { 
+			{0,1,1,1,1,1,0},
+			{0,1,1,1,1,1,0},	
+			{0,1,1,1,1,1,0},
+			{0,1,1,1,1,1,0},
+			{0,1,1,1,1,1,0},
+			{0,1,1,1,1,1,0},
+			{0,1,1,1,1,1,0}};
 
 	public static Array7x7 getChar(char chr) { Array7x7 res;
 	
@@ -289,30 +323,7 @@ public class Chars {
 	case 'Y' : res = new Array7x7(charY); break;
 	case 'Z' : res = new Array7x7(charZ); break;
 
-	default : res = new Array7x7();
+	default : res = new Array7x7(charUNKNOWN); break;
 	}
 	return res; }
-
-
-	public static void main(String[] args) {
-		Chars rs = new Chars();
-		ColorDisplay disp = new ColorDisplay(1, 1);
-
-		int[][] choosenChar = charW;
-
-		int[][] arrrr = new int[7][7];
-
-		for( int i = 0; i < 7; i++ ) {
-			for( int j = 0; j < 7; j++ ) {
-				if( choosenChar[i][j] == 1 ) {
-					arrrr[i][j] = Color.BLACK;
-				}
-			}
-		}
-
-		disp.setDisplay(arrrr);
-		disp.updateDisplay();
-
-		JOptionPane.showMessageDialog(null, disp);
-	}
 }
