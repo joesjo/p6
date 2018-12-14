@@ -247,6 +247,87 @@ public class Chars {
 			{0,0,0,1,0,0,0},
 			{0,0,1,1,1,0,0}};
 	
+	private static int[][] charNBR_TWO = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,1,0,0},
+			{0,0,1,1,0,0,0},
+			{0,1,0,0,0,0,0},
+			{0,1,1,1,1,1,0}};
+	
+	private static int[][] charNBR_THREE = { 
+			{0,1,1,1,1,0,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,1,1,1,0,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,1,1,1,1,0,0}};
+	
+	private static int[][] charNBR_FOUR = { 
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,1,1,1,1,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0}};
+	
+	private static int[][] charNBR_FIVE = { 
+			{0,1,1,1,1,0,0},
+			{0,1,0,0,0,0,0},
+			{0,1,0,0,0,0,0},
+			{0,1,1,1,1,0,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,1,1,1,1,0,0}};
+	
+	private static int[][] charNBR_SIX = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,0,0},
+			{0,1,0,0,0,0,0},
+			{0,1,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,0,0}};
+	
+	private static int[][] charNBR_SEVEN = { 
+			{0,1,1,1,1,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,1,0,0},
+			{0,0,0,0,1,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,1,0,0,0}};
+	
+	private static int[][] charNBR_EIGHT = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,0,0}};
+	
+	private static int[][] charNBR_NINE = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,1,1,1,0,0}};
+	
+	private static int[][] charNBR_ZERO = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,1,1,0},
+			{0,1,0,1,0,1,0},
+			{0,1,1,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,0,0}};
+	
 	// symbols
 	private static int[][] charSPACE = { 
 			{0,0,0,0,0,0,0},
@@ -293,7 +374,9 @@ public class Chars {
 			{0,1,1,1,1,1,0},
 			{0,1,1,1,1,1,0}};
 
-	public static Array7x7 getChar(char chr) { Array7x7 res;
+	public static Array7x7 getChar(char chr) { 
+		
+		Array7x7 res;
 	
 	switch(chr) {
 	case 'A' : res = new Array7x7(charA); break;
@@ -322,8 +405,26 @@ public class Chars {
 	case 'X' : res = new Array7x7(charX); break;
 	case 'Y' : res = new Array7x7(charY); break;
 	case 'Z' : res = new Array7x7(charZ); break;
+	
+	case '1' : res = new Array7x7(charNBR_ONE); break;
+	case '2' : res = new Array7x7(charNBR_TWO); break;
+	case '3' : res = new Array7x7(charNBR_THREE); break;
+	case '4' : res = new Array7x7(charNBR_FOUR); break;
+	case '5' : res = new Array7x7(charNBR_FIVE); break;
+	case '6' : res = new Array7x7(charNBR_SIX); break;
+	case '7' : res = new Array7x7(charNBR_SEVEN); break;
+	case '8' : res = new Array7x7(charNBR_EIGHT); break;
+	case '9' : res = new Array7x7(charNBR_NINE); break;
+	case '0' : res = new Array7x7(charNBR_ZERO); break;
+
+	case ' ' : res = new Array7x7(charSPACE); break;
+	case '+' : res = new Array7x7(charPLUS); break;
+	case '-' : res = new Array7x7(charMINUS); break;
+	case '!' : res = new Array7x7(charEXCLAMATION_MARK); break;
 
 	default : res = new Array7x7(charUNKNOWN); break;
+	
 	}
+	
 	return res; }
 }
