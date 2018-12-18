@@ -365,6 +365,24 @@ public class Chars {
 			{0,0,0,0,0,0,0},
 			{0,0,0,1,0,0,0}};
 	
+	private static int[][] charQUESTION_MARK = { 
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,1,0,0},
+			{0,0,0,1,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,0,1,0,0,0}};
+	
+	private static int[][] charAT = { 
+			{0,1,1,1,1,0,0},
+			{1,0,0,0,0,1,0},
+			{1,0,1,1,0,1,0},
+			{1,0,1,0,1,1,0},
+			{1,0,1,1,1,1,0},
+			{1,0,0,0,0,0,0},
+			{0,1,1,1,1,1,0}};
+	
 	private static int[][] charUNKNOWN = { 
 			{0,1,1,1,1,1,0},
 			{0,1,1,1,1,1,0},	
@@ -421,7 +439,9 @@ public class Chars {
 	case '+' : res = new Array7x7(charPLUS); break;
 	case '-' : res = new Array7x7(charMINUS); break;
 	case '!' : res = new Array7x7(charEXCLAMATION_MARK); break;
-
+	case '?' : res = new Array7x7(charQUESTION_MARK); break;
+	case '@' : res = new Array7x7(charAT); break;
+	
 	default : res = new Array7x7(charUNKNOWN); break;
 	
 	}
