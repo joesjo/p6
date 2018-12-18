@@ -1,6 +1,5 @@
 package resources;
 import exceptions.InvalidLengthException;
-import p4_arrays.Integer2dArrays;
 public class Array7x7 {
 
 	/*
@@ -28,7 +27,7 @@ public class Array7x7 {
 	}
 
 	public Array7x7( int[][] array ) {
-		if( Integer2dArrays.elements(array) == array7x7Length ) {
+		if( Methods.integer2DArrays_ELEMENTS(array) == array7x7Length ) {
 			this.array7x7 = array;
 		}
 		else {
@@ -38,7 +37,7 @@ public class Array7x7 {
 
 	public Array7x7( Array7x7 array ) {
 	
-		if( Integer2dArrays.elements(array.toIntArray()) == array7x7Length ) {
+		if( Methods.integer2DArrays_ELEMENTS(array.toIntArray()) == array7x7Length ) {
 			this.array7x7 = array.toIntArray();
 		}
 		else {

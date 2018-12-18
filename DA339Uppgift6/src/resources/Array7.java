@@ -1,6 +1,5 @@
 package resources;
 import exceptions.InvalidLengthException;
-import p4_arrays.*;
 
 public class Array7 {
 	
@@ -52,12 +51,12 @@ public class Array7 {
 	}
 	
 	public Array7 getArray() {
-		Array7 array7toReturn = new Array7(IntegerArrays.copy(this.array7));
+		Array7 array7toReturn = new Array7(Methods.integerArrays_COPY(this.array7));
 		return array7toReturn;
 	}
 	
 	public int[] toIntArray() {
-		int[] arrayToRetrun = IntegerArrays.copy(this.array7);
+		int[] arrayToRetrun = Methods.integerArrays_COPY(this.array7);
 		return arrayToRetrun;
 	}
 }
