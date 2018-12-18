@@ -2,8 +2,11 @@ package moment6;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.SwingUtilities;
 
+import resources.Array7;
 import resources.Array7x7;
 import resources.Chars;
 
@@ -17,28 +20,28 @@ public class Controller {
 	private int columns;
 	private int rows;
 	private static int color;
+	private int firstTimeOrNot = 0;
 
-	public void setUI( UserInterface ui, int cols, int rows, int color ) {
-		this.ui = ui;
+	public void setUI( UserInterface useri, int cols, int rows, int color ) {
+		this.ui = useri;
 		this.columns = cols;
 		this.rows = rows;
 		this.array7x7 = new Array7x7[rows][cols];
 		this.tempArray7x7 = new Array7x7[rows][cols];
 		this.color = color;
 	}
-	
-	public class ToDo extends TimerTask { 
+
+	public class FlowTextRight extends TimerTask { 
 		public void run( ) {
 			SwingUtilities.invokeLater( new Runnable() { 
 				public void run() {
 					if( index < 30000) {
-						
-						// tror den bara uppdaterar arrayn på den aktuella raden
+
 						// man skulle kunna ha lite tempInts som håller koll på mellan vilka kolumner? 
 						// för att minska antalet array7x7 som måste uppdateras
-						
+
 						// gäller även i [ ui.update7x7(array7x7); ]
-						for( int i = (rows/2); i < (rows/2)+1; i++ ) {
+						for( int i = 0; i < array7x7.length; i++ ) {
 							for( int j = 0; j < array7x7[i].length; j++ ) {
 								if( j == 0) {
 									array7x7[i][j].shiftRight(tempArray7x7[i][tempArray7x7[i].length-1].getCol(6));
@@ -60,6 +63,89 @@ public class Controller {
 		}
 	}
 
+	public class FlowTextLeft extends TimerTask { 
+		public void run( ) {
+			SwingUtilities.invokeLater( new Runnable() { 
+				public void run() {
+					if( index < 30000) {
+
+						for( int i = 0; i < array7x7.length; i++ ) {
+							for( int j = 0; j < array7x7[i].length; j++ ) {
+								if( j == tempArray7x7[i].length-1) {
+									array7x7[i][j].shiftLeft(tempArray7x7[i][0].getCol(0));
+								}		
+								else {
+									array7x7[i][j].shiftLeft(tempArray7x7[i][j+1].getCol(0));
+								}
+							}
+						}
+						index++;
+					}
+					else {
+						timer.cancel();
+					}
+					ui.update7x7(array7x7);
+					updateTempArray7x7();
+				}
+			});
+		}
+	}
+
+	public class FlowTextDown extends TimerTask { 
+		public void run( ) {
+			SwingUtilities.invokeLater( new Runnable() { 
+				public void run() {
+					if( index < 30000) {
+
+						for( int i = 0; i < array7x7.length; i++ ) {
+							for( int j = 0; j < array7x7[i].length; j++ ) {
+								if( i == 0) {
+									array7x7[i][j].shiftDown(tempArray7x7[tempArray7x7.length - 1][j].getRow(6));
+								}		
+								else {
+									array7x7[i][j].shiftDown(tempArray7x7[i-1][j].getRow(6));
+								}
+							}
+						}
+						index++;
+					}
+					else {
+						timer.cancel();
+					}
+					ui.update7x7(array7x7);
+					updateTempArray7x7();
+				}
+			});
+		}
+	}
+	
+	public class FlowTextUp extends TimerTask { 
+		public void run( ) {
+			SwingUtilities.invokeLater( new Runnable() { 
+				public void run() {
+					if( index < 30000) {
+						for( int i = 0; i < array7x7.length; i++ ) {
+							for( int j = 0; j < array7x7[i].length; j++ ) {
+								if( i == tempArray7x7.length - 1) {
+									array7x7[i][j].shiftUp(tempArray7x7[0][j].getRow(0));
+								}		
+								else {
+									array7x7[i][j].shiftUp(tempArray7x7[i+1][j].getRow(0));
+								}
+							}
+						}
+						index++;
+					}
+					else {
+						timer.cancel();
+					}
+					ui.update7x7(array7x7);
+					updateTempArray7x7();
+				}
+			});
+		}
+	}
+	
 	public void showText() {
 		for(int i = 0; i < array7x7.length; i++) {
 			for( int j = 0; j < array7x7[i].length ; j++ ) {
@@ -76,7 +162,7 @@ public class Controller {
 			}
 		}	
 	}
-	
+
 	public void updateTempArray7x7() {
 		for( int i = 0; i < array7x7.length; i++ ) {
 			for( int j = 0; j < array7x7[i].length; j++ ) {
@@ -85,8 +171,13 @@ public class Controller {
 			}
 		}	
 	}
-	
+
 	public void setText(String text, int color) {
+		// om det finns en timer eller inte, går antagligen att lösa på snyggare sätt.
+		if( firstTimeOrNot > 0 ) {
+			this.timer.cancel();
+		}
+
 		int charIndex = 0;
 		for(int i = 0; i < array7x7.length; i++) {
 			for( int j = 0; j < array7x7[i].length ; j++ ) {
@@ -103,14 +194,48 @@ public class Controller {
 			}
 		}
 		setTempArray7x7();
+		firstTimeOrNot++;
 	}
 
 	public void flowRight() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
 		this.timer = new Timer();
 		this.index = 0;
-		this.timer.schedule( new ToDo(), 300, 100);
+		this.timer.schedule( new FlowTextRight(), 0, 70);
+		firstTimeOrNot++;
 	}
 
+	public void flowLeft() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextLeft(), 0, 70);
+		firstTimeOrNot++;
+	}
+
+	public void flowDown() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextDown(), 0, 70);
+		firstTimeOrNot++;
+	}
+
+	public void flowUp() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextUp(), 0, 70);
+		firstTimeOrNot++;
+	}
 	public static int[][] toColorText( Array7x7 arrayIn ) {
 		int[][] toReturn = new int[7][7];
 

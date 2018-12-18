@@ -108,29 +108,51 @@ public class Array7x7 {
 	}
 
 	public void shiftLeft() {
-		shiftLeft( new Array7() );
+		shiftLeft( getCol((0)) );
 	}
-	
+
 	public void shiftLeft( Array7 array7 ) {
-		array7 = new Array7( getCol(0) );
-		
+		this.array7 = new Array7( getCol(0) );
+
 		for( int i = 0; i < array7Length - 1; i++ ) {
 			setCol(i, getCol(i + 1));
 		}
 		setCol( array7Length - 1, array7 );
-		
 	}
-	
+
+	public void shiftRight() {
+		shiftRight( getCol((array7Length-1)) );
+	}
+
 	public void shiftRight( Array7 array7 ) {
-		
-		array7 = new Array7( getCol(array7Length-1) );
-	
 		for( int i = array7Length-1; i > 0; i-- ) {
 			setCol( i, getCol( i - 1 ) );
 		}
 		setCol(0, array7);
 	}
 	
+	public void shiftDown() {
+		shiftDown( getRow((array7Length-1)) );
+	}
+
+	public void shiftDown( Array7 array7 ) {
+		for( int i = array7Length-1; i > 0; i-- ) {
+			setRow( i, getRow( i - 1 ) );
+		}
+		setRow(0, array7);
+	}
+	
+	public void shiftUp() {
+		shiftDown( getRow((0)) );
+	}
+
+	public void shiftUp( Array7 array7 ) {
+		for( int i = 0; i < array7Length - 1; i++ ) {
+			setRow( i, getRow( i + 1 ) );
+		}
+		setRow( array7Length - 1, array7);
+	}
+
 	public Array7 getTempArray() {
 		return this.array7;
 	}
