@@ -1,4 +1,4 @@
-package p6_colors;
+package resources;
 
 import java.util.Random;
 import java.util.Timer;

@@ -1,11 +1,11 @@
 package moment4;
 
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-import p6_colors.*;
 import resources.Array7;
 import resources.Array7x7;
+import resources.Color;
+import resources.ColorDisplay;
 
 public class Test_Uppgift_6 {
 	

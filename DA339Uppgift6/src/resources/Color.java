@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package p6_colors;
+package resources;
 
 /**
  * The Color class defines methods for creating and converting color ints.

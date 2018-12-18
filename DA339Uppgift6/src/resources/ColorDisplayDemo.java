@@ -1,4 +1,4 @@
-package p6_colors;
+package resources;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
