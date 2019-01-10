@@ -236,6 +236,49 @@ public class Controller {
 		this.timer.schedule( new FlowTextUp(), 0, 70);
 		firstTimeOrNot++;
 	}
+	
+	public void flowUpRight() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextUp(), 0, 70);
+		this.timer.schedule( new FlowTextRight(), 0, 70);
+		firstTimeOrNot++;
+	}
+	
+	public void flowDownRight() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextDown(), 0, 70);
+		this.timer.schedule( new FlowTextRight(), 0, 70);
+		firstTimeOrNot++;
+	}
+	
+	public void flowDownLeft() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextDown(), 0, 70);
+		this.timer.schedule( new FlowTextLeft(), 0, 70);
+		firstTimeOrNot++;
+	}
+	public void flowUpLeft() {
+		if( firstTimeOrNot > 1 ) {
+			this.timer.cancel();
+		}
+		this.timer = new Timer();
+		this.index = 0;
+		this.timer.schedule( new FlowTextUp(), 0, 70);
+		this.timer.schedule( new FlowTextLeft(), 0, 70);
+		firstTimeOrNot++;	
+	}
 	public static int[][] toColorText( Array7x7 arrayIn ) {
 		int[][] toReturn = new int[7][7];
 

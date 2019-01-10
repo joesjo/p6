@@ -57,15 +57,15 @@ public class UserInterface extends JPanel {
 			pnlUserChoise.add(btnsChoise[i]);
 		}
 
-		btnsChoise[0].setVisible(false);
+		btnsChoise[0].setText("<^");
 		btnsChoise[1].setText("UP");
-		btnsChoise[2].setVisible(false);
+		btnsChoise[2].setText("^>");
 		btnsChoise[3].setText("LEFT");
 		btnsChoise[4].setText("PRINT");
 		btnsChoise[5].setText("RIGHT");
-		btnsChoise[6].setVisible(false);
+		btnsChoise[6].setText("<v");
 		btnsChoise[7].setText("DOWN");
-		btnsChoise[8].setVisible(false);
+		btnsChoise[8].setText("v>");
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -110,8 +110,14 @@ public class UserInterface extends JPanel {
 				controller.setText(fld.getText(), Color.CYAN);
 				controller.showText();
 			}
+			if( e.getSource() == btnsChoise[0]) {
+				controller.flowUpLeft();
+			}
 			if( e.getSource() == btnsChoise[1]) {
 				controller.flowUp();
+			}
+			if( e.getSource() == btnsChoise[2]) {
+				controller.flowUpRight();
 			}
 			if( e.getSource() == btnsChoise[3]) {
 				controller.flowLeft();
@@ -119,8 +125,14 @@ public class UserInterface extends JPanel {
 			if( e.getSource() == btnsChoise[5]) {
 				controller.flowRight();
 			}
+			if( e.getSource() == btnsChoise[6]) {
+				controller.flowDownLeft();
+			}
 			if( e.getSource() == btnsChoise[7]) {
 				controller.flowDown();
+			}
+			if( e.getSource() == btnsChoise[8]) {
+				controller.flowDownRight();
 			}
 		}		
 	}
