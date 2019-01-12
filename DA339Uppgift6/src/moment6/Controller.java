@@ -269,6 +269,8 @@ public class Controller {
 		this.timer.schedule( new FlowTextLeft(), 0, 70);
 		firstTimeOrNot++;
 	}
+	
+	// ↖
 	public void flowUpLeft() {
 		if( firstTimeOrNot > 1 ) {
 			this.timer.cancel();

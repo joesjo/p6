@@ -237,6 +237,34 @@ public class Chars {
 			{0,1,0,0,0,0,0},
 			{0,1,1,1,1,1,0}};
 	
+	
+	private static int[][] charÄ = { 
+			{0,1,0,0,0,1,0},
+			{0,0,0,0,0,0,0},
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,1,1,1,1,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0}};
+	
+	private static int[][] charÅ= { 
+			{0,0,0,1,0,0,0},
+			{0,0,0,0,0,0,0},
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,1,1,1,1,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0}};
+	
+	private static int[][] charÖ = { 
+			{0,1,0,0,0,1,0},
+			{0,0,0,0,0,0,0},
+			{0,0,1,1,1,0,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,1,0,0,0,1,0},
+			{0,0,1,1,1,0,0}};
+	
 	// figures
 	private static int[][] charNBR_ONE = { 
 			{0,0,0,1,0,0,0},
@@ -423,6 +451,9 @@ public class Chars {
 	case 'X' : res = new Array7x7(charX); break;
 	case 'Y' : res = new Array7x7(charY); break;
 	case 'Z' : res = new Array7x7(charZ); break;
+	case 'Å' : res = new Array7x7(charÅ); break;
+	case 'Ä' : res = new Array7x7(charÄ); break;
+	case 'Ö' : res = new Array7x7(charÖ); break;
 	
 	case '1' : res = new Array7x7(charNBR_ONE); break;
 	case '2' : res = new Array7x7(charNBR_TWO); break;

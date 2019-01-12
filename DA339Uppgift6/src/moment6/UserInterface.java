@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import resources.*;
 
@@ -32,47 +34,89 @@ public class UserInterface extends JPanel {
 
 	private JPanel pnlWest = new JPanel( new GridBagLayout());
 	private JPanel pnlWestWest = new JPanel( new BorderLayout());
-	private JPanel pnlUserChoise = new JPanel( new GridLayout(3, 3));
-	private JButton[] btnsChoise = new JButton[9];
+	private JPanel pnlUserChoice = new JPanel( new GridLayout(3, 3));
+	private JButton[] btnsChoice = new JButton[9];
 
 	public UserInterface( Controller c, int cols, int rows, int color ) {
 		this.columns = cols;
 		this.rows = rows;
-
 		this.controller = c;
 		this.controller.setUI(this, cols, rows, color);
 		UserAction action = new UserAction();
 		colorDis = new ColorDisplay( rows, cols, Color.BLACK, Color.DKGRAY);
 		setLayout( new BorderLayout() );
+		//		fld.addActionListener( action );
 
-		fld.addActionListener( action );
+		//Add Documentlistener to Textfield fld (textChanged is called whenever fld is called)
+		fld.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				textChanged();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+
+				textChanged();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+
+				textChanged();
+			}
+		});
 		fld.setPreferredSize(new Dimension(100, 40));
 		add( colorDis, BorderLayout.CENTER );
 
 
 		for( int i = 0; i < 9; i++ ) {
-			btnsChoise[i] = new JButton();
-			btnsChoise[i].addActionListener(action);
-			btnsChoise[i].setPreferredSize(new Dimension(70,70));
-			pnlUserChoise.add(btnsChoise[i]);
+			btnsChoice[i] = new JButton();
+			btnsChoice[i].addActionListener(action);
+			btnsChoice[i].setPreferredSize(new Dimension(70,70));
+			pnlUserChoice.add(btnsChoice[i]);
 		}
 
-		btnsChoise[0].setText("<^");
-		btnsChoise[1].setText("UP");
-		btnsChoise[2].setText("^>");
-		btnsChoise[3].setText("LEFT");
-		btnsChoise[4].setText("PRINT");
-		btnsChoise[5].setText("RIGHT");
-		btnsChoise[6].setText("<v");
-		btnsChoise[7].setText("DOWN");
-		btnsChoise[8].setText("v>");
+		// ↖
+		btnsChoice[0].setText("\u2196"); 
+		btnsChoice[0].setEnabled(false);
+
+		// Up
+		btnsChoice[1].setText("\u2191"); 
+		btnsChoice[1].setEnabled(false);
+
+		// ↗
+		btnsChoice[2].setText("\u2197"); 
+		btnsChoice[2].setEnabled(false);;
+
+		//Left
+		btnsChoice[3].setText("\u2190"); 
+		btnsChoice[3].setEnabled(false);
+
+		//Print
+		btnsChoice[4].setEnabled(false);
+		btnsChoice[4].setText("PRINT");
+
+		// Right
+		btnsChoice[5].setText("\u2192"); 
+		btnsChoice[5].setEnabled(false);
+
+		// ↙
+		btnsChoice[6].setText("\u2199"); 
+		btnsChoice[6].setEnabled(false);
+
+		//Down
+		btnsChoice[7].setText("\u2193");
+		btnsChoice[7].setEnabled(false);
+
+		// ↘
+		btnsChoice[8].setText("\u2198");
+		btnsChoice[8].setEnabled(false);
+
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		pnlWest.add(pnlUserChoise, gbc);
-		pnlWestWest.add(pnlUserChoise, BorderLayout.CENTER);
+		pnlWest.add(pnlUserChoice, gbc);
+		pnlWestWest.add(pnlUserChoice, BorderLayout.CENTER);
 		pnlWestWest.add(fld, BorderLayout.SOUTH);
 		pnlWest.add(pnlWestWest);
 
@@ -84,6 +128,46 @@ public class UserInterface extends JPanel {
 		colorDis.setDisplay(array);
 		colorDis.updateDisplay();
 	}
+	// Make all buttons no longer "greyed out"
+	private void enableButtons() {
+		btnsChoice[0].setEnabled(true);
+		btnsChoice[1].setEnabled(true);
+		btnsChoice[2].setEnabled(true);
+		btnsChoice[3].setEnabled(true);
+		btnsChoice[4].setEnabled(true);
+		btnsChoice[5].setEnabled(true);
+		btnsChoice[6].setEnabled(true);
+		btnsChoice[7].setEnabled(true);
+		btnsChoice[8].setEnabled(true);
+	}
+
+	// Make all buttons "greyed out"
+	public void disableButtons() {
+		btnsChoice[0].setEnabled(false);
+		btnsChoice[1].setEnabled(false);
+		btnsChoice[2].setEnabled(false);
+		btnsChoice[3].setEnabled(false);
+		btnsChoice[4].setEnabled(false);
+		btnsChoice[5].setEnabled(false);
+		btnsChoice[6].setEnabled(false);
+		btnsChoice[7].setEnabled(false);
+		btnsChoice[8].setEnabled(false);
+	}
+
+	// Called everytime JTextField fld is changed
+	// Could me used to update the floating text in real time (as soon as something is changed) but need to rewrite stuff in Controller first.
+	public void textChanged() {
+		if (fld.getText().length() > 0) {
+			enableButtons();
+		}
+		else {
+			disableButtons();
+		}
+
+
+	}
+
+
 
 	public void update7x7(Array7x7[][] array) {
 
@@ -100,42 +184,43 @@ public class UserInterface extends JPanel {
 		colorDis.updateDisplay();
 	}
 
+
 	public class UserAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if( e.getSource() == btnsChoise[4] ) {
+			if (e.getSource() == btnsChoice[4]) {
 				colorDis.clearDisplay();
 				controller.setText(fld.getText(), Color.CYAN);
 				controller.showText();
 			}
-			if( e.getSource() == btnsChoise[0]) {
+
+			if (e.getSource() == btnsChoice[0]) {
 				controller.flowUpLeft();
 			}
-			if( e.getSource() == btnsChoise[1]) {
+			if (e.getSource() == btnsChoice[1]) {
 				controller.flowUp();
 			}
-			if( e.getSource() == btnsChoise[2]) {
+			if (e.getSource() == btnsChoice[2]) {
 				controller.flowUpRight();
 			}
-			if( e.getSource() == btnsChoise[3]) {
+			if (e.getSource() == btnsChoice[3]) {
 				controller.flowLeft();
 			}
-			if( e.getSource() == btnsChoise[5]) {
+			if (e.getSource() == btnsChoice[5]) {
 				controller.flowRight();
 			}
-			if( e.getSource() == btnsChoise[6]) {
+			if (e.getSource() == btnsChoice[6]) {
 				controller.flowDownLeft();
 			}
-			if( e.getSource() == btnsChoise[7]) {
+			if (e.getSource() == btnsChoice[7]) {
 				controller.flowDown();
-			}
-			if( e.getSource() == btnsChoise[8]) {
+			} 
+			if (e.getSource() == btnsChoice[8]) {
 				controller.flowDownRight();
 			}
 		}		
 	}
-
-
 }
+
