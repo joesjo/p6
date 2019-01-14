@@ -167,6 +167,7 @@ public class Array7x7Input extends JPanel {
 					throw new InvalidInputException("Input must be a numner, between 0 (zero) and 9 (nine): " + fldRowNbr.getText());
 				}
 				else {
+					tempArray7 = new Array7();
 					for( int i = 0; i < array7_LENGTH; i++ ) {
 						tempArray7.setElement(i, Integer.parseInt(fldArray7Row[i].getText()));	
 					}
