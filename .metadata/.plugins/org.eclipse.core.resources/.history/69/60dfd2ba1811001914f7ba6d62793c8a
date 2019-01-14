@@ -1,0 +1,154 @@
+package p6;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Viewer extends JPanel {
+	private JPanel pnlRow, pnlColumn, pnlGrid;
+	private JLabel lblRow, lblColumn, lblGrid;
+	
+	public Viewer() {
+		setLayout(new GridBagLayout());
+		setPreferredSize(new Dimension(640, 640));
+		initializeComponents();
+	}
+	
+	private void initializeComponents() {
+		pnlGrid = new JPanel();
+		pnlGrid.setLayout(new GridLayout(7, 7));
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				JLabel label = new JLabel();
+				label.setText(String.valueOf((i + 1) * (j + 1)));
+				label.setBackground(Color.WHITE);
+				label.setForeground(Color.BLACK);
+				label.setPreferredSize(new Dimension(60, 60));
+				label.setFont(new Font("serif", Font.PLAIN, 40));
+				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				pnlGrid.add(label);
+			}
+		}
+		
+		pnlRow = new JPanel();
+		pnlRow.setLayout(new GridLayout(7, 1));
+		for (int i = 0; i < 7; i++) {
+			JLabel label = new JLabel();
+			label.setText(String.valueOf(i + 1));
+			label.setBackground(Color.WHITE);
+			label.setForeground(Color.BLACK);
+			label.setPreferredSize(new Dimension(60, 60));
+			label.setFont(new Font("serif", Font.PLAIN, 40));
+			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			pnlRow.add(label);
+		}
+		
+		pnlColumn = new JPanel();
+		pnlColumn.setLayout(new GridLayout(1, 7));
+		for (int i = 0; i < 7; i++) {
+			JLabel label = new JLabel();
+			label.setText(String.valueOf(i + 1));
+			label.setBackground(Color.WHITE);
+			label.setForeground(Color.BLACK);
+			label.setPreferredSize(new Dimension(60, 60));
+			label.setFont(new Font("serif", Font.PLAIN, 40));
+			label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			pnlColumn.add(label);
+		}
+		
+		lblGrid = new JLabel("Array7x7");
+		lblRow = new JLabel("Row");
+		lblColumn = new JLabel("Column");
+		
+		GridBagConstraints constraints = new GridBagConstraints();
+		
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		add(lblColumn, constraints);
+		
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		add(lblGrid, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		add(pnlRow, constraints);
+		
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		add(pnlGrid, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		add(lblRow, constraints);
+		
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		add(pnlColumn, constraints);
+		
+		
+		
+//		grid = new JLabel[49];
+//		specificRow = new JLabel[7];
+//		specificColumn = new JLabel[7];
+//		
+//		for (int i = 0; i < specificRow.length; i++) {
+//			specificRow[i] = new JLabel();
+//			specificRow[i].setText("row " + i);
+//			
+//			specificRow[i].setBackground(Color.WHITE);
+//			add(specificRow[i]);
+//		}
+//		
+//		for (int i = 0; i < specificColumn.length; i++) {
+//			specificColumn[i] = new JLabel();
+//			specificColumn[i].setText("column " + i);
+//			specificColumn[i].setLocation(i * specificColumn[i].getWidth(), getHeight() - specificColumn[i].getHeight());
+//			specificColumn[i].setBackground(Color.WHITE);
+//			add(specificColumn[i]);			
+//		}
+//		
+//		for (int i = 0; i < grid.length; i++) {
+//			grid[i] = new JLabel();
+//			grid[i].setText(String.valueOf(i));
+//			grid[i].setBackground(Color.WHITE);
+//			add(grid[i]);
+//		}
+	}
+	
+	public void show() {
+		JFrame frame = new JFrame();
+//		frame.setSize(new Dimension(720, 360));
+		frame.add(this);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public void setRow(Array7 array) {
+		
+	}
+	
+	public void setColumn(Array7 array) {
+		
+	}
+	
+	public void setRowInArray7x7(int index, Array7 row) {
+		
+	}
+	
+	public void setColumnInArray7x7(int index, Array7 column) {
+		
+	}
+	
+	public void setArray7x7(Array7x7 array) {
+		
+	}
+}
