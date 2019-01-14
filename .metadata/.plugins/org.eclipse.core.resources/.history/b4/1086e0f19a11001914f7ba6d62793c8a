@@ -1,0 +1,33 @@
+package p6;
+
+public class Test {
+	public static void main(String[] args) {
+		Viewer viewer = new Viewer();
+		viewer.show();
+	}
+	
+	private static void print(Array7 array7) {
+		for (int i = 0; i < 7; i++) {
+			System.out.print(array7.getElement(i) + " ");
+		}
+		System.out.println();
+	}
+	
+	private static void print(Array7x7 array7x7) {
+		for (int i = 0; i < 7; i++) {
+			print(array7x7.getRow(i));
+		}
+	}
+	
+	private static void printRows(Array7x7 array7x7) {
+		for (int i = 0; i < 7; i++) {
+			print(array7x7.getRow(i));
+		}
+	}
+	
+	private static void printCols(Array7x7 array7x7) {
+		for (int i = 0; i < 7; i++) {
+			print(array7x7.getCol(i));
+		}
+	}
+}

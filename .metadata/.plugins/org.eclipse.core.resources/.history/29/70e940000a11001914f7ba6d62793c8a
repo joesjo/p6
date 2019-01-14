@@ -1,0 +1,78 @@
+package p6;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Viewer extends JPanel {
+	private JLabel[] grid;
+	private JLabel[] specificRow;
+	private JLabel[] specificColumn;
+	
+	public Viewer() {
+		setLayout(new BorderLayout());
+		this.setSize(new Dimension(720, 360));
+		initializeComponents();
+	}
+	
+	private void initializeComponents() {
+		grid = new JLabel[49];
+		specificRow = new JLabel[7];
+		specificColumn = new JLabel[7];
+		
+		for (int i = 0; i < specificRow.length; i++) {
+			specificRow[i] = new JLabel();
+			specificRow[i].setText("row " + i);
+			specificRow[i].setLocation(0, i * specificRow[i].getHeight());
+			specificRow[i].setBackground(Color.WHITE);
+			add(specificRow[i]);
+		}
+		
+		for (int i = 0; i < specificColumn.length; i++) {
+			specificColumn[i] = new JLabel();
+			specificColumn[i].setText("column " + i);
+			specificColumn[i].setLocation(i * specificColumn[i].getWidth(), getHeight() - specificColumn[i].getHeight());
+			specificColumn[i].setBackground(Color.WHITE);
+			add(specificColumn[i]);			
+		}
+		
+		for (int i = 0; i < grid.length; i++) {
+			grid[i] = new JLabel();
+			grid[i].setText(String.valueOf(i));
+			grid[i].setBackground(Color.WHITE);
+			add(grid[i]);
+		}
+	}
+	
+	public void show() {
+		JFrame frame = new JFrame();
+		frame.setSize(new Dimension(720, 360));
+		frame.add(this);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	public void setRow(Array7 array) {
+		
+	}
+	
+	public void setColumn(Array7 array) {
+		
+	}
+	
+	public void setRowInArray7x7(int index, Array7 row) {
+		
+	}
+	
+	public void setColumnInArray7x7(int index, Array7 column) {
+		
+	}
+	
+	public void setArray7x7(Array7x7 array) {
+		
+	}
+}

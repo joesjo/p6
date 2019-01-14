@@ -1,0 +1,23 @@
+package p6;
+
+public class Viewer {
+	public void setRow(Array7 array) {
+		
+	}
+	
+	public void setColumn(Array7 array) {
+		
+	}
+	
+	public void setRowInArray7x7(int index, Array7 row) {
+		
+	}
+	
+	public void setColumnInArray7x7(int index, Array7 column) {
+		
+	}
+	
+	public void setArray7x7(Array7x7 array) {
+		
+	}
+}
