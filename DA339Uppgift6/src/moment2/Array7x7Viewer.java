@@ -55,6 +55,8 @@ public class Array7x7Viewer extends JPanel {
 				lblArray7x7Instance[i][j].setFont( font );
 				lblArray7x7Instance[i][j].setBorder( border );
 				lblArray7x7Instance[i][j].setPreferredSize(new Dimension( boxDimX, boxDimY ));
+				lblArray7x7Instance[i][j].setBackground(Color.WHITE);
+				lblArray7x7Instance[i][j].setOpaque(true);
 				pnlArray7x7Instance.add( lblArray7x7Instance[i][j] );
 			}
 		}
@@ -64,12 +66,16 @@ public class Array7x7Viewer extends JPanel {
 			lblArray7Column[i].setFont( font );
 			lblArray7Column[i].setBorder( border );	
 			lblArray7Column[i].setPreferredSize( new Dimension( boxDimX, boxDimY ));
+			lblArray7Column[i].setBackground(Color.WHITE);
+			lblArray7Column[i].setOpaque(true);
 			pnlColumn.add( lblArray7Column[i] );
 
 			lblArray7Row[i] = new JLabel( "" + 0, SwingConstants.CENTER) ;
 			lblArray7Row[i].setFont( font );
 			lblArray7Row[i].setBorder( border );
 			lblArray7Row[i].setPreferredSize( new Dimension( boxDimX, boxDimY ));
+			lblArray7Row[i].setBackground(Color.WHITE);
+			lblArray7Row[i].setOpaque(true);
 			pnlRow.add( lblArray7Row[i] );
 		}
 
